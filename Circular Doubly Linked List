@@ -1,0 +1,46 @@
+class Node {
+ data;
+ prev;
+ next;
+};
+
+let head = new Node();
+let temp = head;
+
+// The Circular Doubly Linked List function
+function linked(n) {
+    if (head.data == null) {
+        head.data = n;
+    } else {
+    let x = new Node();
+    x.data = n;
+    temp.next = x;
+    x.prev = temp;
+    temp = x;
+    temp.next = head;
+    head.prev = temp
+}
+}
+
+linked(10)
+linked(30)
+linked(40)
+linked(50)
+linked(60)
+
+
+let temp2 = head;
+let temp3 = head;
+
+//Printing the list
+while(temp2) {
+    console.log(temp2.data);
+    temp2 = temp2.next;
+// In case you want to print the list in reverse
+//     if (temp2.data == 60){
+//         temp2 = temp2.prev;
+//         while (temp2){
+//         console.log(temp2.data)
+//         temp2 = temp2.prev;
+// }}
+}
