@@ -1,0 +1,41 @@
+#include <iostream>
+
+using namespace std;
+
+int maxSum(int arr[],int arrLen, int k) {
+
+    int max = 0, currSum = 0;
+    
+    for (int i=0; i<k; i++){
+        currSum += arr[i];
+    }
+    
+     if (currSum > max) {
+            
+                max = currSum;
+            }
+    
+    for (int j = 1; j <= arrLen-k; j++){
+       
+        currSum = currSum - arr[j-1] + arr[j+k-1]; 
+        
+        if (currSum > max) {
+            
+                max = currSum;
+            }
+    }
+    
+    return max;
+}
+
+int main(int argc, char** argv) {
+    
+    int arr[6] = {6,5,4,3,2,1};
+    
+    int arrLength = sizeof(arr) / sizeof(arr[0]);
+    
+    cout << maxSum(arr, arrLength, 3) << endl;
+    
+    return 0;
+}
+
