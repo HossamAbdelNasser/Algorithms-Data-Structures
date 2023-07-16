@@ -1,0 +1,95 @@
+#include <iostream>
+
+using namespace std;
+
+
+struct BinaryTree {
+    int val;
+    BinaryTree* left;
+    BinaryTree* right;
+} ;
+
+
+BinaryTree* tree(int val, BinaryTree* root) {
+    
+    if (root->val == NULL ) {
+        root->val = val;
+        
+        root->right = new BinaryTree();
+        root->left = new BinaryTree();
+    }
+    
+     if (val < root->val) {
+        
+        tree(val, root->left);
+    }
+    
+      if (val > root->val) {
+       tree(val, root->right);
+    }
+    
+    
+    return root;
+}
+
+//Inorder traversal
+int inorder(BinaryTree* root) {
+        
+        if (root->val == NULL){
+            return 0;
+        }
+        inorder(root->left);
+        cout <<  root->val << endl;
+        inorder(root->right);
+
+    }
+
+//Pre-order traversal
+int preorder(BinaryTree* root) {
+        
+        if (root->val == NULL){
+            return 0;
+        }
+        
+        cout <<  root->val << endl;
+        preorder(root->left);
+        preorder(root->right);
+
+    }
+
+//Post-order traversal
+int postorder(BinaryTree* root) {
+        
+        if (root->val == NULL){
+            return 0;
+        }
+        
+        postorder(root->left);
+        postorder(root->right);
+        cout <<  root->val << endl;
+    }
+
+int main(int argc, char** argv) {
+    
+    BinaryTree* root = new BinaryTree();
+    
+    tree(2, root);
+    tree(5, root);
+    tree(3, root);
+    tree(1, root);
+    tree(7, root);
+    
+    cout << "Inorder:" << endl;
+    inorder(root);
+    
+    cout << "Pre-Order:" << endl;
+    preorder(root);
+    
+    cout << "Post-order:" << endl;
+    postorder(root);
+       
+
+    
+    return 0;
+}
+
