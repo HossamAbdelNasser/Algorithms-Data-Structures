@@ -1,0 +1,29 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    
+bool prime[100];
+
+for (int i = 2; i < 100; i++) {
+    prime[i] = true;
+}
+
+for (int i = 2; i < 100; i++) {
+    for (int j = 2; j < 100; j++) {
+        if (i * j > 100) continue;
+        
+        if (prime[i]){
+            prime[i * j] = false;
+        }
+}
+}
+
+for (int z = 2; z < 100; z++){
+    if (prime[z]) {
+        cout << z << endl;
+    }
+}
+    return 0;
+}
