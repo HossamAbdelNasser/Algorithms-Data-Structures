@@ -1,0 +1,51 @@
+#include <iostream>
+
+using namespace std;
+
+int nearestPos(int arr[], int sz, int cPos) {
+    
+    int l = 0;
+    int r = sz-1;
+    int mid = 0;
+    int minD = 0;
+    int minIdx = 0;
+    
+    while (l <= r) {
+        mid = l + (r-l)/2;
+        if (arr[mid] == cPos) {
+            return mid;
+        }
+        else if (cPos > arr[mid]) {
+            minD = cPos - arr[mid];
+            minIdx = mid;
+            l = mid + 1;
+            
+            if (cPos - arr[mid] < minD) {
+                minD = cPos - arr[mid];
+                minIdx = mid;
+            }
+            
+        } else {
+            minD = arr[mid] - cPos;
+            minIdx = mid;
+            r = mid - 1;
+               if (arr[mid] - cPos < minD) {
+                minD = arr[mid] - cPos;
+                minIdx = mid;
+            }
+        }
+    }
+    
+    return minIdx;
+}
+
+int main() {
+   
+   int locations[] = {10,20,30,40,50,60};
+   int carPosition = 35;
+   int size = sizeof(locations)/sizeof(locations[0]);
+  
+    cout << nearestPos(locations, size, carPosition);
+
+    return 0;
+}
