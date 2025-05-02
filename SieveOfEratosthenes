@@ -20,6 +20,7 @@ for (int i = 2; i < 100; i++) {
 }
 }
 
+//Print 
 for (int z = 2; z < 100; z++){
     if (prime[z]) {
         cout << z << endl;
