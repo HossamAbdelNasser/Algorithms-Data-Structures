@@ -8,18 +8,17 @@ void swap (int& a, int &b) {
 }
 
 int partition(int arr[], int low, int high) {
-    
-    int pivot = arr[high];
-    int i = low - 1;
+    int pivot = arr[high]; //Last element as the pivot
+    int i = low - 1; //A pointer that is incremented everytime we find an element less than the pivot
     
     for (int j = low; j < high; j++) {
         
         if (arr[j] <= pivot) {
-            i++;
-            swap(arr[i], arr[j]);
+            i++; // if we find an element less than or equal to the pivot, we increment the pointer
+            swap(arr[i], arr[j]); // we swap the elements, if j = 0, and i is incremented from -1 to 0, then it will be a self-swap (arr[0], arr[0]) 
         }
     }
-    swap(arr[i+1], arr[high]);
+    swap(arr[i+1], arr[high]); //Final swap, swapping the at i+1 index with the pivot
     return i + 1;
 }
 
@@ -27,7 +26,7 @@ void quickSort(int arr[], int low, int high) {
     
     if (low < high) {
         int pi = partition(arr, low, high);
-        quickSort(arr, low, pi - 1);
+        quickSort(arr, low, pi - 1); // If pi is less than low, it'll be ignored
         quickSort(arr, pi + 1, high);
     }
 }
